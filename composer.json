@@ -2,7 +2,7 @@
     "name": "doitcloudconsulting/salesforce",
     "description": "Salesforce ToolKit for Laravel maked by DoIT Cloud Consulting",
     "type": "project",
-    "license": "GPL",
+    "license": "LGPL-2.0-only",
     "authors": [
         {
             "name": "Hugo Hernández",
