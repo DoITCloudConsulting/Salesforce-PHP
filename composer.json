@@ -1,7 +1,7 @@
 {
     "name": "doitcloudconsulting/salesforce",
     "description": "Salesforce ToolKit for Laravel maked by DoIT Cloud Consulting",
-    "type": "project",
+    "type": "Integration ToolKit Salesforce",
     "license": "LGPL-2.0-only",
     "authors": [
         {
