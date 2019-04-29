@@ -131,8 +131,8 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 This project is licensed under the LGPL-2.0-only License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
 * Inspiration
-* etc
+* etc -->
 
