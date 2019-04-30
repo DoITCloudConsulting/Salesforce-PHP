@@ -11,9 +11,9 @@ return [
     | 
     */
 
-	'Username' => 'mayax@doitcloud.consulting',
-	'Password' => 'trayecta85',
-	'Token' => 'IU2JyLDkiairgKI9G4Pap7a8',
+	'Username' => 'user@doitcloud.consulting',
+	'Password' => 'passwordUser',
+	'Token' => 'tokenUser',
 
 	/*
     |--------------------------------------------------------------------------
