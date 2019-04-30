@@ -23,7 +23,7 @@ After you have a laravel project you will need run the command to install our pa
 
 
 ```
-composer create-project doitcloudconsulting/salesforce
+composer require doitcloudconsulting/salesforce
 ```
 
 Wait a moment and you see on the composer.json a new element:
@@ -43,6 +43,8 @@ Now is necessary add the service providers, go to config/app.php and add the nex
 ```
  DoITCloudConsulting\Salesforce\SalesforceServiceProvider::class,
 ```
+
+To init session is neccesary add an file wsdl
 
 
 ## Running some examples:

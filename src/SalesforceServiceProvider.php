@@ -29,4 +29,15 @@ class SalesforceServiceProvider extends ServiceProvider
     {
         //
     }
+
+    private function publishConfig()
+    {
+        $path = $this->getConfigPath();
+        $this->publishes([$path => config_path('SalesforceConfig.php')], 'config');
+    }
+
+    private function getConfigPath()
+    {
+        return __DIR__ . '/config/SalesforceConfig.php';
+    }
 }
