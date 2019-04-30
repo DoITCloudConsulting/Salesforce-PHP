@@ -18,7 +18,7 @@ class SalesforceServiceProvider extends ServiceProvider
             __DIR__ . '/config/SalesforceConfig.php', 'SalesforceConfig'
         );
         $this->app->make('DoITCloudConsulting\Salesforce\Controllers\Salesforce');
-        $this->mergeConfig();
+
     }
 
     /**
@@ -28,17 +28,6 @@ class SalesforceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-    }
 
-    private function publishConfig()
-    {
-        $path = $this->getConfigPath();
-        $this->publishes([$path => config_path('SalesforceConfig.php')], 'config');
-    }
-
-    private function getConfigPath()
-    {
-        return __DIR__ . '/config/SalesforceConfig.php';
     }
 }
