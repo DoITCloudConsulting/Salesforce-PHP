@@ -31,7 +31,7 @@ Wait a moment and you see on the composer.json a new element:
 ```
  "require": {
      ....
-        "doitcloudconsulting/salesforce": "@dev",
+        "doitcloudconsulting/salesforce": "^0.0.0",
      ....
     }
 ```
@@ -88,6 +88,14 @@ $salesforce->upsert(array(
 	array('Name' => 'Acc2', 'Phone' => 192837465, 'id' => '001f400000yNY0LAAW'),
 	), 'Account');
 ```
+
+Query
+
+```
+$salesforce = new Salesforce();
+$salesforce->query('select Id, Name from Account limit 10');
+```
+
 
 
 <!-- ### Break down into end to end tests
