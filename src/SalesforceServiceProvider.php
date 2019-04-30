@@ -28,6 +28,8 @@ class SalesforceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        $this->publishes([
+            __DIR__.'/config/SalesforceConfig.php' => config_path('SalesforceConfig.php')
+        ], 'config');
     }
 }

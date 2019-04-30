@@ -44,7 +44,18 @@ Now is necessary add the service providers, go to config/app.php and add the nex
  DoITCloudConsulting\Salesforce\SalesforceServiceProvider::class,
 ```
 
-To init session is neccesary add an file wsdl
+To init session is neccesary add some parameters and a file wsdl, set the credentials on the config file app/SalesforceConfig.php . You will must run the next command to see the file on the config folder.
+
+```
+$ php artisan vendor:publish --tag=config
+
+####### Result #######
+
+Copied File [/myProject/DoITCloudConsulting/Salesforce/src/config/SalesforceConfig.php] To [/config/SalesforceConfig.php]
+
+```
+
+
 
 
 ## Running some examples:
