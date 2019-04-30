@@ -18,6 +18,7 @@ class SalesforceServiceProvider extends ServiceProvider
             __DIR__ . '/config/SalesforceConfig.php', 'SalesforceConfig'
         );
         $this->app->make('DoITCloudConsulting\Salesforce\Controllers\Salesforce');
+        $this->mergeConfig();
     }
 
     /**
