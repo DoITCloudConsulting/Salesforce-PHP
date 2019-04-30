@@ -55,8 +55,25 @@ Copied File [/myProject/DoITCloudConsulting/Salesforce/src/config/SalesforceConf
 
 ```
 
+Set the credentials
 
+```
+return [
 
+	/*
+    |--------------------------------------------------------------------------
+    | Data Access
+    |--------------------------------------------------------------------------
+    |
+    | Set credenctials to login on salesforce platform.
+    | 
+    */
+
+	'Username' => '********@doitcloud.consulting',
+	'Password' => '**********',
+	'Token' => '******************************',
+
+```
 
 ## Running some examples:
 
