@@ -31,5 +31,9 @@ class SalesforceServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/SalesforceConfig.php' => config_path('SalesforceConfig.php')
         ], 'config');
+
+        $this->publishes([
+            __DIR__.'/partner.wsdl.xml' => config_path('partner.wsdl.xml')
+        ], 'wsdlconfig');
     }
 }

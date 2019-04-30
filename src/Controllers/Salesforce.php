@@ -393,7 +393,23 @@ class Salesforce extends Controller
     public function wsdl($xml)
     {
     	$route = __DIR__ . '/' . $xml;
-    	return str_replace('/Controllers/', '/', $route);
+        if(strpos($route, '/vendor/doitcloudconsulting/salesforce') !== false){
+            $configRoute = explode('vendor/', $route)[0] . '/config/';
+            $files = scandir($configRoute);
+
+            $counter = 0;
+
+            for ($i=0; $i < count($files); $i++) 
+                if ($files[$i] == 'partner.wsdl.xml' || $files[$i] == 'enterprise.wsdl.xml')
+                    return $configRoute . '/' . $files[$i];
+                else
+                    $counter++;
+
+            if($counter == count($files))
+                return "Check the documentation, apparently you don't have the wsdl to connect with salesforce. Run the next command $ php artisan vendor:publish --tag=wsdlconfig";
+
+        }else       
+           return str_replace('/Controllers/', '/', $route);
     }
 }
 
