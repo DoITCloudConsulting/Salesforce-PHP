@@ -124,7 +124,11 @@ $salesforce = new Salesforce();
 $salesforce->query('select Id, Name from Account limit 10');
 ```
 
-
+Search / SOSL
+```
+$salesforce = new Salesforce();
+$salesforce->sosl('Find {doit} Returning Account(name), lead(name, phone)');
+```
 
 <!-- ### Break down into end to end tests
 

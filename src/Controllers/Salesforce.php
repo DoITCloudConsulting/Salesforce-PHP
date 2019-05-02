@@ -24,6 +24,11 @@ class Salesforce extends Controller
         $this->loginInfo = $this->mySforceConnection->login(config('SalesforceConfig.Username'), config('SalesforceConfig.Password') . config('SalesforceConfig.Token'));
     }
 
+    /**
+     * Get information about session.
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
     public function loginInformation()
     {
         return $this->loginInfo;
@@ -456,6 +461,16 @@ class Salesforce extends Controller
             break;
         }
     }
+
+    public function sosl($search, $mode = NULL)
+    {
+
+        return $this->modeReturn($this->mySforceConnection->search($search), ($mode == null) ? 'object' : $mode);
+    }
+
+
+
+
     /**
      * Function to search wsdl file, used to connect with Salesforce
      *
