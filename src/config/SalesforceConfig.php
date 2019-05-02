@@ -24,6 +24,8 @@ return [
     | mode, partner or enterprise is the options. Download the WSDL from 
     | Salesforce > Settings > API. Click on the option that you need and 
     | replace the files demo on the package.
+    |
+    | Enterprise / Partner
     | 
     */
 

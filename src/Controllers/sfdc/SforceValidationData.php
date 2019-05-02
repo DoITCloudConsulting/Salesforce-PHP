@@ -102,13 +102,29 @@ class SforceValidationData {
 
    	}
 
+    /**
+     * method responsable of return results of validations.
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
    	public function result()
    	{
-   		return $this->result;
+
+      $counter = 0;
+      if (count($this->result) > 0) 
+        for ($i=0; $i < count($this->result); $i++) 
+          if(empty($this->result[$i]))
+            $counter++;
+       
+      
+        if ($counter != count($this->result) ) 
+          return $this->result;
    	}
 
    	public function validationphones($field, $datafield)
     {
+
+
     	// Allow +, - and . in phone number
 	    $filtered_phone_number = filter_var($datafield, FILTER_SANITIZE_NUMBER_INT);
 	     // Remove "-" from number

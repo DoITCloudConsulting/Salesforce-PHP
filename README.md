@@ -161,6 +161,20 @@ $salesforce = new Salesforce();
 $salesforce->sosl('Find {doit} Returning Account(name), lead(name, phone)');
 ```
 
+Convert Lead
+```
+$salesforce = new Salesforce();
+
+$lead = $salesforce->insert(
+        array('lastname' => 'Homerito Hernández', 
+              'Email' => 'homerito@doitcloud.mx', 
+              'Phone' => 1234588892, 
+              'Company' => 'DoIT Cloud Consulting'
+          ), 'Lead');
+
+$salesforce->convertLead($lead->id, 'Closed - Converted');
+
+```
 <!-- ### Break down into end to end tests
 
 Explain what these tests test and why

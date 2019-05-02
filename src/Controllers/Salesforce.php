@@ -138,7 +138,6 @@ class Salesforce extends Controller
     {
         $records = array();
         $applyValidation = array();
-
         if ( $this->arrayType($information) == 'is_bidimensional') {
             for ($i=0; $i < count($information); $i++) { 
 
@@ -165,14 +164,17 @@ class Salesforce extends Controller
             if(count($sp->result()) > 0 )
                 return $sp->result();
 
+            
+            
             if(config('SalesforceConfig.Mode') == 'partner'){
                 $sObject = new SObject();
                 $sObject->fields = $information;
                 $sObject->type = $object;
                 array_push($records, $sObject);   
             }
-        return $this->modeReturn($this->mySforceConnection->create($records), 'object');
-      }
+            
+            return $this->modeReturn($this->mySforceConnection->create($records)[0], 'object');
+        }
     }
 
     public function update($information, $object)
@@ -223,7 +225,7 @@ class Salesforce extends Controller
                     $sObject->id = (isset($information['id'])) ? $information['id'] : $information['Id'];
                     array_push($records, $sObject);   
                 }
-                return $this->modeReturn($this->mySforceConnection->update($records), 'json');
+                return $this->modeReturn($this->mySforceConnection->update($records)[0], 'json');
             }
         }
     }
@@ -304,7 +306,7 @@ class Salesforce extends Controller
                 }
 
                 if(!is_bool($validationT))
-                    return $this->modeReturn($this->mySforceConnection->upsert($field, $records), 'json');
+                    return $this->modeReturn($this->mySforceConnection->upsert($field, $records)[0], 'json');
                 else
                     return $this->modeReturn($this->mySforceConnection->upsert('id', $records), 'json');
 
