@@ -175,6 +175,38 @@ $lead = $salesforce->insert(
 $salesforce->convertLead($lead->id, 'Closed - Converted');
 
 ```
+
+Describe Global (sObject of objects custom and standard with properties).
+```
+$salesforce = new Salesforce();
+$salesforce->describeGlobal();
+```
+
+
+Describe layout
+```
+$salesforce = new Salesforce();
+$salesforce->describeLayout('Account');
+```
+
+Describe SObject
+```
+$salesforce = new Salesforce();
+$salesforce->describeSObject('Account');
+```
+
+Get me all updated
+```
+$salesforce = new Salesforce();
+$salesforce->getMeAllUpdated('Case', '08-04-2019', '30-04-2019');
+```
+
+Get me all Deleted
+```
+$salesforce = new Salesforce();
+$salesforce->getMeAllDeleted('Case', '08-04-2019', '30-04-2019');
+```
+
 <!-- ### Break down into end to end tests
 
 Explain what these tests test and why
