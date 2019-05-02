@@ -59,6 +59,8 @@ class Salesforce extends Controller
     public function query($query, $mode = NULL, $returnJust = NULL)
     {
 
+
+        # Validate the parameter catched to return in a format
         if($returnJust != 'original' && $returnJust != 'data' && $returnJust != 'manageable' && !is_null($returnJust) )
             return 'ERROR_RETURN_BUNDLED_DATA';
         
@@ -119,7 +121,14 @@ class Salesforce extends Controller
         else
             return 'is_unidimensional';
     }
-
+    /**
+     * function to insert records on Salesforce.
+     *
+     * @param      <type>  $information  Field set with information
+     * @param      <type>  $object       The object Standard or custom
+     *
+     * @return     array   Transaction result
+     */
     public function insert($information, $object)
     {
         $records = array();
@@ -370,6 +379,64 @@ class Salesforce extends Controller
         return $this->modeReturn($this->mySforceConnection->describeSObject($object), 'object');
     }
 
+
+    /**
+     * Retrieves the IDs of individual objects of the specified object that have been updated since the specified time.
+     * 
+     * @param  [type] $object    [Custom or Standard object]
+     * @param  [type] $startDate [Date from where it will be searched]
+     * @param  [type] $endDate   [Date from where it end searched]
+     * @return [type]            [object]
+     */
+    public function getMeAllUpdated($object, $startDate, $endDate)
+    {
+        $date = Carbon::parse($startDate);
+        $now = Carbon::parse($endDate);
+        $diff = $date->diffInDays($now);
+        if($diff >= 30)
+            return 'INVALID_REPLICATION_DATE: startDate cannot be more than 30 days ago';
+        
+        return $this->modeReturn($this->mySforceConnection->getUpdated($object, intval(Self::toUnixTime($startDate)), intval(Self::toUnixTime($endDate))), 'object');
+    }
+
+    /**
+     * Function to retrive information about records deleted in a range date.
+     * Retrieves the IDs of individual objects of the specified object that have been deleted since the specified time.
+     *     The format right to dates passed as parameter is DD-MM-YYYY
+     * 
+     * @param  [type] $object    [Custom or Standard object]
+     * @param  [type] $startDate [Date from where it will be searched]
+     * @param  [type] $endDate   [Date from where it end searched]
+     * @return [type]            [object]
+     */
+    public function getMeAllDeleted($object, $startDate, $endDate)
+    {
+        $date = Carbon::parse($startDate);
+        $now = Carbon::parse($endDate);
+        $diff = $date->diffInDays($now);
+        if($diff >= 30)
+            return 'INVALID_REPLICATION_DATE: startDate cannot be more than 30 days ago';
+        
+        return $this->modeReturn($this->mySforceConnection->getDeleted($object, intval(Self::toUnixTime($startDate)), intval(Self::toUnixTime($endDate))), 'object');
+    }
+
+
+
+    /**
+     * Function responsable of catch a commond date and convert it to unix format.
+     * @param  [type] $date [The date in commmond format]
+     * @return [type]       [Unix format]
+     */
+    public static function toUnixTime($date)
+    {
+        if($date != null){
+            $dateTime = new \DateTime($date); 
+            return $dateTime->format('U');
+        }else
+            return "IS_EMPTY_VARIABLE";
+    }
+
+
     public function modeReturn($response, $mode = null){
 
       $mode = strtolower($mode);
@@ -389,7 +456,13 @@ class Salesforce extends Controller
             break;
         }
     }
-
+    /**
+     * Function to search wsdl file, used to connect with Salesforce
+     *
+     * @param      <type>  $xml    The file's name xml 
+     *
+     * @return     string  ( route where is the wsdl file )
+     */
     public function wsdl($xml)
     {
     	$route = __DIR__ . '/' . $xml;
