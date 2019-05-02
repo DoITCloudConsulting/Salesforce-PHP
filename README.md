@@ -75,6 +75,37 @@ return [
 
 ```
 
+Now export the demo file to connect through a wsdl. It will show a file wsdl into config/partner.wsdl.xml, just you need replace it. Run the next command:
+
+```
+$ php artisan vendor:publish --tag=wsdlconfig
+
+```
+
+Go to Settings >[find box write] API > Download Partner / Enterprise then you will download a file xml that must be replaced inside of config/partner.wsdl.xml
+
+Depending of connection type selected, in **config/SalesforceConfig.php** you must set what type connection you want use.
+
+```
+
+    /*
+    |--------------------------------------------------------------------------
+    | WSDL 
+    |--------------------------------------------------------------------------
+    |
+    | To connect to salesforce definition objects is necessary set a connect 
+    | mode, partner or enterprise is the options. Download the WSDL from 
+    | Salesforce > Settings > API. Click on the option that you need and 
+    | replace the files demo on the package.
+    | 
+    */
+
+
+    'Mode' => 'partner',
+
+```
+
+
 ## Running some examples:
 
 Insert
